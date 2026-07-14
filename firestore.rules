@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Public read of questions, only admins can write
+    match /questions/{doc} {
+      allow read: if true;
+      allow write: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Scores: authenticated users can create their score documents, reads public
+    match /scores/{doc} {
+      allow create: if request.auth != null && request.resource.data.uid == request.auth.uid;
+      allow read: if true;
+      allow update, delete: if false;
+    }
+
+    // Users: only admin can write roles; users can read their own
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null && request.auth.uid == userId;
+      allow update: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+      allow delete: if false;
+    }
+  }
+}

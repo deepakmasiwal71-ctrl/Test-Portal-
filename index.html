@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mock Test Portal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Mock Test Portal</h1>
+      <div style="display:flex;gap:12px;align-items:center">
+        <button id="btn-theme" aria-label="Toggle theme">🌙</button>
+        <div id="user-info"></div>
+      </div>
+    </header>
+
+    <!-- Login / Signup -->
+    <section id="auth-section" class="panel">
+      <h2>Student Login / Signup</h2>
+      <input id="displayName" placeholder="Display name (for signup)" />
+      <input id="email" placeholder="Email" />
+      <input id="password" type="password" placeholder="Password" />
+      <div class="buttons">
+        <button id="btn-signin">Sign In</button>
+        <button id="btn-signup">Sign Up</button>
+      </div>
+      <p>Or sign in as admin with an account flagged as admin.</p>
+    </section>
+
+    <!-- Home -->
+    <section id="home-section" class="panel hidden">
+      <h2>Welcome</h2>
+      <button id="btn-start">▶️ Start Test</button>
+      <button id="btn-leaderboard">🏆 Leaderboard</button>
+      <button id="btn-admin">🛠️ Admin Panel</button>
+      <button id="btn-edit-profile">👤 Edit Profile</button>
+    </section>
+
+    <!-- Test -->
+    <section id="test-section" class="panel hidden">
+      <div id="timer">Time: <span id="time-left">00:00</span></div>
+      <div id="question-area"></div>
+      <div class="nav-buttons">
+        <button id="btn-prev">Previous</button>
+        <button id="btn-next">Next</button>
+      </div>
+      <div class="submit-area">
+        <button id="btn-submit">Submit Test</button>
+      </div>
+    </section>
+
+    <!-- Result -->
+    <section id="result-section" class="panel hidden">
+      <h2>Result</h2>
+      <div id="score-area"></div>
+      <div id="answers-area"></div>
+      <button id="btn-back-home">Back to Home</button>
+    </section>
+
+    <!-- Admin -->
+    <section id="admin-section" class="panel hidden">
+      <h2>Admin Panel</h2>
+      <div id="admin-controls">
+        <input id="q-text" placeholder="Question text" />
+        <input id="q-options" placeholder="Comma-separated options" />
+        <input id="q-answer" placeholder="Correct answer (exact option text)" />
+        <button id="btn-add-q">Add Question</button>
+      </div>
+      <h3>Questions</h3>
+      <ul id="questions-list"></ul>
+    </section>
+
+    <!-- Leaderboard -->
+    <section id="leaderboard-section" class="panel hidden">
+      <h2>Leaderboard</h2>
+      <ol id="leaderboard-list"></ol>
+      <button id="btn-back">Back</button>
+    </section>
+
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
